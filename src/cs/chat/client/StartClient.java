@@ -9,7 +9,12 @@ public class StartClient {
         Input input = new ConsoleInput();
         Output output = new ConsoleOutput();
 
-        Client client = new Client();
-        client.start();
+        Client client = new Client(input, output);
+        client.startWorking();
+
+        while(true){
+            client.sendMessage();
+            // fixme: cannot complete
+        }
     }
 }
