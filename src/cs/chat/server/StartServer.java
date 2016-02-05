@@ -1,12 +1,12 @@
 package cs.chat.server;
 
 /**
- * Created by szymo on 05/02/2016.
+ * Created by Camellia Sinensis on 05/02/2016.
  */
 public class StartServer {
 
     public static void main(String[] args){
-        Input input = new ConsoleInput();
+        Input inputs = new ConsoleInput();
         Output output = new ConsoleOutput();
 
 

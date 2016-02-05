@@ -3,7 +3,7 @@ package cs.chat.client;
 import cs.chat.message.Message;
 
 /**
- * Created by szymo on 05/02/2016.
+ * Created by Camellia Sinensis on 05/02/2016.
  */
 public class ConsoleInput implements Input {
 
