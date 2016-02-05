@@ -1,8 +1,10 @@
 package cs.chat.client;
 
+import cs.chat.message.Message;
+
 /**
  * Created by szymo on 05/02/2016.
  */
-public class Output {
-
+interface Output {
+    void displayMessage();
 }

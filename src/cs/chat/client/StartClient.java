@@ -8,5 +8,8 @@ public class StartClient {
     public static void main(String[] args){
         Input input = new ConsoleInput();
         Output output = new ConsoleOutput();
+
+        Client client = new Client();
+        client.start();
     }
 }

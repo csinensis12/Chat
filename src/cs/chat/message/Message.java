@@ -5,4 +5,8 @@ package cs.chat.message;
  */
 
 public class Message {
+    // message
+    // receiver
+    // transmitter
+    // type_of_message - enum
 }

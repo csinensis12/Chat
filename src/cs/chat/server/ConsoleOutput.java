@@ -1,4 +1,4 @@
-package cs.chat.client;
+package cs.chat.server;
 
 /**
  * Created by szymo on 05/02/2016.
@@ -6,5 +6,5 @@ package cs.chat.client;
 public class ConsoleOutput implements Output {
 
     @Override
-    public void displayMessage(){}
+    public void displayLogs(){}
 }
