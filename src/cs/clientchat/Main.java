@@ -1,4 +1,4 @@
-package camellia.sinensis;
+package cs.clientchat;
 
 public class Main {
 
