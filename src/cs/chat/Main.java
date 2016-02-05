@@ -1,4 +1,4 @@
-package cs.clientchat;
+package cs.chat;
 
 public class Main {
 
