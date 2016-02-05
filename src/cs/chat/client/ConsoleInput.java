@@ -13,24 +13,21 @@ public class ConsoleInput implements Input {
     public String getMessage(){
         Scanner scan = new Scanner(System.in);
         System.out.println("== Enter Message: ");
-        String msg = scan.nextLine().trim();
-        return msg;
+        return scan.nextLine().trim();
     }
 
     @Override
     public String getReceiver(){
         Scanner scan = new Scanner(System.in);
         System.out.println("== Enter Receiver: ");
-        String receiver = scan.nextLine().trim();
-        return receiver;
+        return scan.nextLine().trim();
     }
 
     @Override
     public String getIp(){
         Scanner scan = new Scanner(System.in);
         System.out.println("== Enter Server IP ===\n");
-        String Ip = scan.nextLine().trim();
-        return Ip;
+        return scan.nextLine().trim();
     }
 
     @Override
@@ -38,15 +35,13 @@ public class ConsoleInput implements Input {
         Scanner scan = new Scanner(System.in);
         System.out.println("== Enter Port ===\n");
         String port = scan.nextLine().trim();
-        int intPort = Integer.getInteger(port);
-        return intPort;
+        return Integer.parseInt(port);
     }
 
     @Override
     public String getClientName(){
         Scanner scan = new Scanner(System.in);
         System.out.println("== Enter Server IP ===\n");
-        String clientName = scan.nextLine().trim();
-        return clientName;
+        return scan.nextLine().trim();
     }
 }

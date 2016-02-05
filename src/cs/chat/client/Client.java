@@ -10,7 +10,7 @@ import java.net.Socket;
 /**
  * Created by Camellia Sinensis on 05/02/2016.
  */
-public class Client {
+public class Client extends Thread{
 
     Socket socket;
     Input input;
@@ -114,5 +114,25 @@ public class Client {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void run(){
+        while(true){
+            Message msg;
+            try {
+                msg = (Message)istream.readObject();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.print("Problem in message receiver - IO");
+                continue;
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                System.out.print("Problem in message receiver - ClassNotFound");
+                continue;
+            }
+
+            output.displayMessage(msg);
+        }
     }
 }
