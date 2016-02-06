@@ -6,9 +6,10 @@ package cs.chat.server;
 public class StartServer {
 
     public static void main(String[] args){
-        Input inputs = new ConsoleInput();
+        Input input = new ConsoleInput();
         Output output = new ConsoleOutput();
 
-
+        Server server = new Server(input, output);
+        server.startWorking();
     }
 }

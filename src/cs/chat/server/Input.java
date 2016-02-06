@@ -5,6 +5,6 @@ package cs.chat.server;
  */
 interface Input {
 
-    void getParameters();
+    int getPort();
 
 }

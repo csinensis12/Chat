@@ -6,5 +6,7 @@ package cs.chat.server;
 public class ConsoleOutput implements Output {
 
     @Override
-    public void displayLogs(){}
+    public void displayLog(String str){
+        System.out.println(str);
+    }
 }
