@@ -90,7 +90,6 @@ public class Server extends Thread{
                     System.out.println("problem with sending bad_name");
                     return;
                 }
-                continue;
             }else{
                 newUserName = msg.getTransmitter();
                 break;
@@ -123,8 +122,6 @@ public class Server extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
             System.out.print("Cannot create socket on port " + port);
-            return;
         }
-
     }
 }
