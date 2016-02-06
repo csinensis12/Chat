@@ -27,35 +27,35 @@ public class ClientConnectionHandler extends Thread{
     }
 
     @Override
-    public void run(){
+    public void run() {
         System.out.println("Connected with " + userName);
-
-        Message msg;
-        try {
-            msg = (Message)istream.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.print("IOException in clientConnectionHandler");
-            return;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.print("ClassNotFound in clientConnectionHandler");
-            return;
-        }
-
-        if ("server".equals(msg.getReceiver())){
+        while (true) {
+            Message msg;
             try {
-                ostream.writeObject(new Message("server",userName,serverResponse(msg.getMessage())));
+                msg = (Message) istream.readObject();
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.print("Couldnt send server response");
+                System.out.print("IOException in clientConnectionHandler");
+                return;
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                System.out.print("ClassNotFound in clientConnectionHandler");
                 return;
             }
-        }else{
-            transferMessage(msg);
+
+            if ("server".equals(msg.getReceiver())) {
+                try {
+                    ostream.writeObject(new Message("server", userName, serverResponse(msg.getMessage())));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.print("Couldnt send server response");
+                    return;
+                }
+            } else {
+                transferMessage(msg);
+            }
         }
     }
-
     private void transferMessage(Message msg) {
         //TODO: it could be done much better
         MessageSender ms = new MessageSender(clientHashMap,msg);

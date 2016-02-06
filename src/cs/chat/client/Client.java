@@ -30,6 +30,7 @@ public class Client extends Thread{
 
         subscribeToServer();
 
+        start();
     }
 
     private void subscribeToServer() {

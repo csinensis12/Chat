@@ -19,7 +19,7 @@ public class ConsoleInput implements Input {
     @Override
     public String getReceiver(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("== Enter Receiver: ");
+        System.out.println("== Enter Receiver (you want to msg him): ");
         return scan.nextLine().trim();
     }
 
@@ -41,7 +41,7 @@ public class ConsoleInput implements Input {
     @Override
     public String getClientName(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("== Enter Server IP ===\n");
+        System.out.println("== Enter Your Name ===\n");
         return scan.nextLine().trim();
     }
 }
