@@ -20,6 +20,11 @@ public class MessageSender extends Thread{
     @Override
     public void run(){
         ClientConnectionHandler client = (ClientConnectionHandler)clientHashMap.get(msg.getReceiver());
-        client.send(msg);
+        if (client != null)
+            client.send(msg);
+        else {
+            client = (ClientConnectionHandler) clientHashMap.get(msg.getTransmitter());
+            client.send(new Message("server", msg.getTransmitter(), msg.getReceiver() + " doesn't exist :("));
+        }
     }
 }

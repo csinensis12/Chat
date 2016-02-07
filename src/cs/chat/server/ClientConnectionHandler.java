@@ -34,30 +34,28 @@ public class ClientConnectionHandler extends Thread{
             try {
                 msg = (Message) istream.readObject();
             } catch (IOException e) {
-                e.printStackTrace();
-                System.out.print("IOException in clientConnectionHandler");
-                return;
+                System.out.print("ObjectInputStream broken, probably client dropped connection\n");
+                break;
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-                System.out.print("ClassNotFound in clientConnectionHandler");
-                return;
+                System.out.print("ClassNotFound in clientConnectionHandler\n");
+                break;
             }
 
             if ("server".equals(msg.getReceiver())) {
                 try {
                     ostream.writeObject(new Message("server", userName, serverResponse(msg.getMessage())));
                 } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.print("Couldnt send server response");
-                    return;
+                    System.out.print("Couldnt send server response, probably ObjectOutputStream is broken\n");
+                    break;
                 }
             } else {
                 transferMessage(msg);
             }
         }
+        clientHashMap.remove(userName);
+        System.out.println("listening thread for "+userName+" stopped\n");
     }
     private void transferMessage(Message msg) {
-        //TODO: it could be done much better
         MessageSender ms = new MessageSender(clientHashMap,msg);
         ms.start();
     }
@@ -66,7 +64,7 @@ public class ClientConnectionHandler extends Thread{
         try {
             ostream.writeObject(msg);
         } catch (IOException ex) {
-            System.out.println("IOException in send method in clientConnectionHandler");
+            System.out.println("IOException in send method in clientConnectionHandler\n");
         }
     }
 
