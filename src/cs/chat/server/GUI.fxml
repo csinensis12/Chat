@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cs.chat.server.GUIController">
+   <center>
+      <TextArea fx:id="textArea" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="textField" />
+            <Button fx:id="button" mnemonicParsing="false" onAction="#handleSubmitButtonAction" text="Connect" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" text="Delete" />
+         </children>
+      </HBox>
+   </bottom>
+   <right>
+      <ListView BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
