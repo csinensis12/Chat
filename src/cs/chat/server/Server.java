@@ -33,6 +33,11 @@ public class Server extends Thread{
         }
     }
 
+    public void stopWorking(){
+        //TODO
+        System.out.println("unsupported yet");
+    }
+
     private void waitForIncommingConnections() {
         output.displayLog( "===waiting for connections===");
         ObjectOutputStream ostream;
