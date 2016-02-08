@@ -10,11 +10,13 @@ public class StartClient {
         Output output = new ConsoleOutput();
 
         Client client = new Client(input, output);
-        client.startWorking();
+        if (!client.startWorking()) {
+            System.out.println("couldnt create connection");
+            System.exit(0);
+        }
 
         while(true){
             client.sendMessage();
-            // fixme: cannot complete
         }
     }
 }

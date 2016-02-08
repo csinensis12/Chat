@@ -33,17 +33,20 @@ public class Server extends Thread{
         }
     }
 
+    public void stopWorking(){
+        //TODO
+        System.out.println("unsupported yet");
+    }
+
     private void waitForIncommingConnections() {
-        //fixme: ugly while without break condition
-        output.displayLog( "===waiting for connections===\n");
+        output.displayLog( "===waiting for connections===");
         ObjectOutputStream ostream;
         ObjectInputStream istream;
 
         try {
             socket = serverSocket.accept();
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("socket couldnt accept connection\n");
+            output.displayLog("Socket couldn't accept connection");
             return;
         }
 
@@ -51,8 +54,7 @@ public class Server extends Thread{
             istream = new ObjectInputStream(socket.getInputStream());
             ostream = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("couldnt create i/o streams\n");
+            output.displayLog("Couldnt create i/o streams");
             return;
         }
 
@@ -63,21 +65,19 @@ public class Server extends Thread{
             try {
                 msg = (Message) istream.readObject();
             } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("couldnt read object - ioexception\n");
+                output.displayLog("couldnt read object - ioexception");
                 return;
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-                System.out.println("couldnt read object - class not found exception\n");
-                return;
+                output.displayLog("couldnt read object - class not found exception");
+                continue;
             }
 
             if (!"server".equals(msg.getReceiver())) {
-                System.out.println("receiver should be server, is: " + msg.getReceiver());
+                output.displayLog("receiver should be server, is: " + msg.getReceiver());
                 continue;
             }
             if (!"hello".equals(msg.getMessage())) {
-                System.out.println("receiver should say hello, said : " + msg.getMessage());
+                output.displayLog("receiver should say hello, said : " + msg.getMessage());
                 continue;
             }
 
@@ -85,8 +85,7 @@ public class Server extends Thread{
                 try {
                     ostream.writeObject(new Message("server",msg.getTransmitter(),"bad_name"));
                 } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.println("problem with sending bad_name");
+                    output.displayLog("Couldn't send 'bad_name', probably ObjectOutputStream destroyed");
                     return;
                 }
             }else{
@@ -103,8 +102,7 @@ public class Server extends Thread{
         try {
             ostream.writeObject(new Message("server", newUserName, "hello" ));
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.print("Sending hello to client failed");
+            output.displayLog("Sending hello to client failed, probably ObjectOutputStream destroyed");
             return;
         }
 
@@ -119,8 +117,7 @@ public class Server extends Thread{
         try {
             serverSocket = new ServerSocket( port );
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.print("Cannot create socket on port " + port);
+            output.displayLog("Cannot create socket on port " + port);
         }
     }
 }

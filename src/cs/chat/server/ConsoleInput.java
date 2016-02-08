@@ -10,7 +10,7 @@ public class ConsoleInput implements Input {
     @Override
     public int getPort(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("== Enter Port ===\n");
+        System.out.print("=== Enter Port: ");
         String port = scan.nextLine().trim();
         return Integer.parseInt(port);
     }

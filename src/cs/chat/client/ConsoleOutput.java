@@ -9,6 +9,6 @@ public class ConsoleOutput implements Output {
 
     @Override
     public void displayMessage(Message msg){
-        System.out.println(msg.getTransmitter()+": "+msg.getMessage()+"\n");
+        System.out.println(msg.getTransmitter()+": "+msg.getMessage());
     }
 }
